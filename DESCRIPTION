@@ -1,0 +1,9 @@
+Package: ezrdb
+Title: Convenience wrapper for accessing SQL databases.
+Version: 0.0.0.9000
+Authors@R: person("Adam", "Jackman", email = "adam@acjackman.com", role = c("aut", "cre"))
+Description: Provides convenience functions for constant work with databases. Manages connections, allows for a default database, and in general tries to make working databases as seamless and simple as possible.
+Depends: R (>= 3.2.3)
+License: MIT + file LISCENCE
+LazyData: true
+Suggests: testthat
