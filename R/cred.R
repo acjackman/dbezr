@@ -28,7 +28,7 @@ cred <- function(user, password, host, dbname, port = 3306, engine="MySQL",
     }
 
     structure(data.frame(user = user, password = password, host = host,
-            port = port, dbname = dbname),
+            port = port, dbname = dbname, engine = engine),
              class="db_credentials", show_warn = FALSE, force_log = .qlog)
 }
 
