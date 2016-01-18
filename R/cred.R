@@ -39,8 +39,11 @@ cred <- function(user, password, host, dbname, port = NA, engine = NA,
     if (engine == "MySQL") {
         port <- ifelse(is.na(port), 3306, as.numeric(port))
         assert_is_numeric(port)
+    } else if (engine == "PostgreSQL"){
+        port <- ifelse(is.na(port), 5432, as.numeric(port))
+        assert_is_numeric(port)
     } else{
-        stop("Missing an argument")
+        stop("Invalid database engine specified")
     }
 
     structure(data.frame(user = user, password = password, host = host,

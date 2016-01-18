@@ -6,6 +6,13 @@ create_con <- function(cred){
                          host = cred$host,
                          port = cred$port,
                          dbname= cred$dbname)
+    } else if (cred$engine == "PostgreSQL"){
+        RPostgreSQL::dbConnect(RPostgreSQL::PostgreSQL(),
+                       user = cred$user,
+                       password = cred$password,
+                       host = cred$host,
+                       port = cred$port,
+                       dbname= cred$dbname)
     }
 }
 
