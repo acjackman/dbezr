@@ -1,5 +1,15 @@
 language: r
 sudo: required
 
+services:
+  - mysql
+  - postgresql
+
 r_github_packages:
   - jimhester/lintr
+
+# before_install:
+
+before_script:
+  - mysql -e "create database IF NOT EXISTS test;" -uroot
+  - psql -c 'create database travis_ci_test;' -U postgres
