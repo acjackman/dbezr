@@ -9,7 +9,9 @@ License: MIT + file LICENCE
 Depends:
     R (>= 3.2.3)
 Imports:
-    assertive.types
+    assertive.types,
+    jsonlite,
+    plyr
 Suggests:
     testthat,
     lintr

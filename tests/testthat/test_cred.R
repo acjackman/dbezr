@@ -1,4 +1,4 @@
-context("db_credentials")
+context("db_credentials - cred")
 
 clst <- list(
     user = "bob",
@@ -100,16 +100,4 @@ test_that("cred allows setting .qlog to silent", {
                 engine = clst$engine),
             class="db_credentials", show_warn = FALSE, force_log = FALSE)
     )
-})
-
-test_that("db_credentials print properly", {
-    crd <- cred("bob", "passwd", "127.0.0.1", "foo", 3306)
-
-    expect_output(crd, "db_cred: bob@127.0.0.1:3306/foo")
-})
-
-test_that("db_credentials print with paswd", {
-    crd <- cred("bob", "passwd", "127.0.0.1", "foo", 3306)
-
-    expect_output(crd, "db_cred: bob@127.0.0.1:3306/foo")
 })

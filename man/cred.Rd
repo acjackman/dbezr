@@ -42,8 +42,10 @@ Retrive database credentials from a structured JSON and create a
 db_credentials object
 }
 \examples{
-cred("bob","passwd","127.0.0.1",3306,"foo")
+cred("bob","passwd","127.0.0.1","foo")
 
-tmp <- cred_json('{"user": "usr", "password": "pass123", "host": "127.0.0.1", "dbname": "foo"}') # nolint
+json <- paste0('{"user": "usr", "password": "pass123", "host": "127.0.0.1",',
+               ' "dbname": "foo"}')
+foo <- cred_json(json)
 }
 

@@ -17,7 +17,7 @@
 #' @return a \code{db_credentials} obeject
 #'
 #' @examples
-#' cred("bob","passwd","127.0.0.1",3306,"foo")
+#' cred("bob","passwd","127.0.0.1","foo")
 #'
 #' @importFrom assertive.types assert_is_character
 #' @importFrom assertive.types assert_is_a_bool
@@ -69,4 +69,51 @@ print.db_credentials <- function(x, show_password=FALSE, ...){
     }
     cat(res,"\n")
     invisible(x)
+}
+
+#' Create database credentials from JSON
+#'
+#' Retrive database credentials from a structured JSON and create a
+#' db_credentials object
+#'
+#' @param json JSON credentials string.
+#'
+#' @examples
+#' json <- paste0('{"user": "usr", "password": "pass123", "host": "127.0.0.1",',
+#'                ' "dbname": "foo"}')
+#' foo <- cred_json(json)
+#' @rdname cred
+#' @export
+cred_json <- function(json){
+    j <- tryCatch(jsonlite::fromJSON(json), error=function(e){
+        stop("Problem parsing JSON please check it for syntax.",
+             call. = FALSE)
+    })
+
+    required_fields <- c("user","password","dbname", "host")
+
+    if (!all(required_fields %in% names(j))){
+        stop("String is missing a required parameter.",
+             "Please check that it specifies",
+             "a username, password, host, and dbname. Port defaults to 3306")
+
+
+    }
+
+    optional_fields <- c("port", "engine", ".qlog", ".show_warn")
+
+    plyr::l_ply(optional_fields, .fun= function(x) {
+        if(is.null(j[[x]])) j[[x]] <<- NA
+    })
+
+    cred(
+        user = j$user,
+        password = j$password,
+        host = j$host,
+        dbname = j$dbname,
+        port = j$port,
+        engine = j$engine,
+        .qlog = j$.qlog,
+        .show_warn = j$.show_warn)
+
 }
