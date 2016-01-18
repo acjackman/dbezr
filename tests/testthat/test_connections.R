@@ -14,7 +14,7 @@ test_that("connect to MySQL test database", {
             expect_true(TRUE)
         },
         error=function(e){
-            fail(paste0("Unable to connect. ",capture.output(print(.cred))))
+            skip(paste0("Unable to connect. ",capture.output(print(.cred))))
         })
     } else{
         skip("No MySQL test database provided")
@@ -35,7 +35,7 @@ test_that("connect to PostgreSQL test database", {
             expect_true(TRUE)
         },
         error=function(e){
-            fail(paste0("Unable to connect. ",capture.output(print(.cred))))
+            skip(paste0("Unable to connect. ",capture.output(print(.cred))))
         })
     } else{
         skip("No PostgreSQL test database provided")

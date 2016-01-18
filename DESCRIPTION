@@ -10,6 +10,9 @@ Depends:
     R (>= 3.2.3)
 Imports:
     assertive.types,
+    DBI,
+    RMySQL,
+    RPostgreSQL,
     jsonlite,
     plyr
 Suggests:
