@@ -1,4 +1,4 @@
 library(testthat)
-library(ezrdb)
+library(dbezr)
 
-test_check("ezrdb")
+test_check("dbezr")

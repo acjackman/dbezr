@@ -2,6 +2,7 @@
 % Please edit documentation in R/cred.R
 \name{cred}
 \alias{cred}
+\alias{cred_file}
 \alias{cred_json}
 \title{Create databse credentials object}
 \usage{
@@ -9,6 +10,8 @@ cred(user, password, host, dbname, port = NA, engine = NA, .qlog = NA,
   .show_warn = NA)
 
 cred_json(json)
+
+cred_file(file)
 }
 \arguments{
 \item{user}{database username}
@@ -29,6 +32,8 @@ cred_json(json)
 See \code{\link{dbwarn}}}
 
 \item{json}{JSON credentials string.}
+
+\item{file}{filepath to JSON credentials file}
 }
 \value{
 a \code{db_credentials} obeject
@@ -38,8 +43,10 @@ Combine all the required elements to create a databse connection into
 a single object. Options can be set interatively via \code{\link{qlog_loud}},
 \code{\link{qlog_silent}}, and  \code{\link{dbwarn}}.
 
-Retrive database credentials from a structured JSON and create a
+Retrieve database credentials from a structured JSON and create a
 db_credentials object
+
+Retrieve database credentials from a file. Uses cred_json to parse.
 }
 \examples{
 cred("bob","passwd","127.0.0.1","foo")

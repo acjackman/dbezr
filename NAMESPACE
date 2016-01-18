@@ -2,6 +2,7 @@
 
 S3method(print,db_credentials)
 export(cred)
+export(cred_file)
 export(cred_json)
 importFrom(assertive.types,assert_is_a_bool)
 importFrom(assertive.types,assert_is_character)

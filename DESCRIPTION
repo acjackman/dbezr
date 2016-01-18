@@ -1,4 +1,4 @@
-Package: ezrdb
+Package: dbezr
 Title: Convenience wrapper for accessing SQL databases
 Version: 0.0.0.9000
 Authors@R: person("Adam", "Jackman", email = "adam@acjackman.com", role = c("aut", "cre"))

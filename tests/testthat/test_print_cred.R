@@ -1,4 +1,4 @@
-context("db_credentials - cred")
+context("db_credentials - print.cred")
 
 test_that("cred objects print properly", {
     crd <- cred("bob", "passwd", "127.0.0.1", "foo", 3306)

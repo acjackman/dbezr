@@ -73,7 +73,7 @@ print.db_credentials <- function(x, show_password=FALSE, ...){
 
 #' Create database credentials from JSON
 #'
-#' Retrive database credentials from a structured JSON and create a
+#' Retrieve database credentials from a structured JSON and create a
 #' db_credentials object
 #'
 #' @param json JSON credentials string.
@@ -116,4 +116,22 @@ cred_json <- function(json){
         .qlog = j$.qlog,
         .show_warn = j$.show_warn)
 
+}
+
+#' Retrieve database credentials from a file
+#'
+#' Retrieve database credentials from a file. Uses cred_json to parse.
+#'
+#' @param file filepath to JSON credentials file
+#'
+#' @rdname cred
+#' @export
+cred_file <- function(file){
+    if(!file.exists(file)){
+        stop("Credentials file does not exist.")
+    }
+
+    # jsonlite package will handle being handed a file,
+    # so there's nothing else to do
+    cred_json(file)
 }
