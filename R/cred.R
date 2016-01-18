@@ -19,17 +19,33 @@
 #' @examples
 #' cred("bob","passwd","127.0.0.1",3306,"foo")
 #'
+#' @importFrom assertive.types assert_is_character
+#' @importFrom assertive.types assert_is_a_bool
+#' @importFrom assertive.types assert_is_numeric
 #' @export
-cred <- function(user, password, host, dbname, port = 3306, engine="MySQL",
-                 .qlog = NULL, .show_warn = FALSE){
-    if(is.null(user) || is.null(password) || is.null(host) || is.null(port)
-       || is.null(dbname)){
+cred <- function(user, password, host, dbname, port = NA, engine = NA,
+                 .qlog = NA, .show_warn = NA){
+
+    assert_is_character(user)
+    assert_is_character(password)
+    assert_is_character(host)
+    assert_is_character(dbname)
+
+    # Set defaults
+    .show_warn <- ifelse(is.na(.show_warn), FALSE, .show_warn)
+    assert_is_a_bool(.show_warn)
+
+    engine <- ifelse(is.na(engine), "MySQL", engine)
+    if (engine == "MySQL") {
+        port <- ifelse(is.na(port), 3306, as.numeric(port))
+        assert_is_numeric(port)
+    } else{
         stop("Missing an argument")
     }
 
     structure(data.frame(user = user, password = password, host = host,
             port = port, dbname = dbname, engine = engine),
-             class="db_credentials", show_warn = FALSE, force_log = .qlog)
+             class="db_credentials", show_warn = .show_warn, force_log = .qlog)
 }
 
 # Create a unique identifier string for a db_credentials object
