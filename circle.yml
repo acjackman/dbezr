@@ -1,6 +1,6 @@
 machine:
   timezone:
-    - America/Phoenix
+    America/Phoenix
   services:
     - mysql
     - postgresql
