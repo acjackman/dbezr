@@ -10,7 +10,7 @@ test_that("connect to MySQL test database", {
                 expect_true(TRUE)
             },
             error=function(e){
-                skip(paste0("Unable to connect. ",capture.output(print(.cred))))
+                fail(paste0("Unable to connect. ",capture.output(print(.cred))))
             })
         },
         error=function(e){
@@ -31,7 +31,7 @@ test_that("connect to PostgreSQL test database", {
                 expect_true(TRUE)
             },
             error=function(e){
-                skip(paste0("Unable to connect. ",capture.output(print(.cred))))
+                fail(paste0("Unable to connect. ",capture.output(print(.cred))))
             })
         },
         error=function(e){
