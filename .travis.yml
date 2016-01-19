@@ -9,6 +9,11 @@ r_github_packages:
   - jimhester/lintr
 
 # before_install:
+env:
+  - >
+    DBEZR_TEST_MYSQL={"user":"root", "password":"", "host":"127.0.0.1", "dbname":"dbezr", "engine": "MySQL" }
+  - >
+    DBEZR_TEST_POSTGRES={"user": "postgres", "password": "", "host": "127.0.0.1", "dbname": "travis_ci_test", "engine": "PostgreSQL"}
 
 before_script:
   - mysql -e "create database IF NOT EXISTS test;" -uroot
