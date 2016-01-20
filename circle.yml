@@ -1,12 +1,15 @@
 machine:
   timezone:
     America/Phoenix
+
   services:
     - mysql
     - postgresql
+
   environment:
     DBEZR_TEST_MYSQL: '[{"user":"ubuntu", "password":"", "host":"127.0.0.1", "dbname":"circle_test", "engine": "MySQL" }]'
     DBEZR_TEST_POSTGRES: '[{"user": "ubuntu", "password": "", "host": "127.0.0.1", "dbname": "circle_test", "engine": "PostgreSQL"}]'
+
   post:
     - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
     - chmod 755 ./travis-tool.sh
@@ -15,6 +18,10 @@ machine:
 dependencies:
   override:
     - ~/travis-tool.sh install_deps
+  cache_directories:
+    - "/usr/local/lib/R/site-library/"
+    - "/usr/lib/R/site-library"
+    - "/usr/lib/R/library/"
 
 test:
   override:

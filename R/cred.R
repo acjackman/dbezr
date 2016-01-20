@@ -47,7 +47,8 @@ cred <- function(user, password, host, dbname, port = NA, engine = NA,
     }
 
     structure(data.frame(user = user, password = password, host = host,
-            port = port, dbname = dbname, engine = engine),
+            port = port, dbname = dbname, engine = engine,
+            stringsAsFactors=FALSE),
              class="db_credentials", show_warn = .show_warn, force_log = .qlog)
 }
 
