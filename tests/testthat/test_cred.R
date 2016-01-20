@@ -13,7 +13,7 @@ test_that("cred creates a credentials object",{
     expect_equal(cred(clst$user, clst$password, clst$host, clst$dbname,
                       clst$port, clst$engine),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
@@ -29,7 +29,7 @@ test_that("cred creates a credentials object with a character port",{
     expect_equal(cred(clst$user, clst$password, clst$host, clst$dbname,
                       char_port, clst$engine),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = num_port, dbname = clst$dbname,
                 engine = clst$engine),
@@ -42,7 +42,7 @@ test_that("cred defaults engine to MySQL", {
     expect_equal(
         cred(clst$user, clst$password, clst$host, clst$dbname, clst$port),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
@@ -55,7 +55,7 @@ test_that("cred defaults port to 3306 if not specified on MySQL Engine", {
     expect_equal(cred(clst$user, clst$password, clst$host, clst$dbname,
                       engine = clst$engine),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
@@ -68,7 +68,7 @@ test_that("cred allows setting show_warn", {
     expect_equal(cred(clst$user, clst$password, clst$host, clst$dbname,
                       engine = clst$engine, .show_warn = TRUE),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
@@ -81,7 +81,7 @@ test_that("cred allows setting .qlog to loud", {
     expect_equal(cred(clst$user, clst$password, clst$host, clst$dbname,
                       engine = clst$engine, .qlog = TRUE),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
@@ -94,7 +94,7 @@ test_that("cred allows setting .qlog to silent", {
     expect_equal(cred(clst$user, clst$password, clst$host, clst$dbname,
                       engine = clst$engine, .qlog = FALSE),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),

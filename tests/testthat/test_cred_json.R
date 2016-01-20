@@ -12,7 +12,7 @@ test_that("cred_json parses string", {
     js <- as.character(jsonlite::toJSON(clst))
     expect_equal(cred_json(js),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
@@ -32,7 +32,7 @@ test_that("cred_json allows setting .qlog", {
 
     expect_equal(cred_json(jtrue),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
@@ -47,7 +47,7 @@ test_that("cred_json allows setting .show_warn", {
 
     expect_equal(cred_json(jtrue),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
@@ -62,7 +62,7 @@ test_that("cred_json accepts port with character type ", {
 
     expect_equal(cred_json(jtrue),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
