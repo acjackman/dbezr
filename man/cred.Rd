@@ -2,6 +2,7 @@
 % Please edit documentation in R/cred.R
 \name{cred}
 \alias{cred}
+\alias{cred_env}
 \alias{cred_file}
 \alias{cred_json}
 \title{Create databse credentials object}
@@ -12,6 +13,8 @@ cred(user, password, host, dbname, port = NA, engine = NA, .qlog = NA,
 cred_json(json)
 
 cred_file(file)
+
+cred_env(var_name)
 }
 \arguments{
 \item{user}{database username}
@@ -34,6 +37,8 @@ See \code{\link{dbwarn}}}
 \item{json}{JSON credentials string.}
 
 \item{file}{filepath to JSON credentials file}
+
+\item{var_name}{system variable name}
 }
 \value{
 a \code{db_credentials} obeject
@@ -47,6 +52,9 @@ Retrieve database credentials from a structured JSON and create a
 db_credentials object
 
 Retrieve database credentials from a file. Uses cred_json to parse.
+
+Retrieve database credentials from a system environment variable.
+Uses cred_json to parse.
 }
 \examples{
 cred("bob","passwd","127.0.0.1","foo")

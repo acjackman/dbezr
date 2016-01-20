@@ -1,4 +1,6 @@
 create_con <- function(cred){
+    assert_is_character(cred$engine)
+
     if(cred$engine == "MySQL"){
         RMySQL::dbConnect(RMySQL::MySQL(),
                          user = cred$user,
@@ -20,6 +22,15 @@ disconnect_con <- function(conn){
     DBI::dbDisconnect(conn)
 }
 
-cred_env <- function(){
-    cred_json(Sys.getenv("DBEZR_TEST_MYSQL"))
+
+
+
+is_valid_con <- function(conn){
+    tryCatch({
+        DBI::dbGetQuery(conn, "SELECT TRUE")
+        return(TRUE)
+    },
+    error = function(e){
+        return(FALSE)
+    })
 }
