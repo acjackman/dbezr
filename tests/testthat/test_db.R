@@ -60,7 +60,7 @@ test_that("db can be created from a credentials object and then removed", {
     tryCatch({
         with_mock(
             `lubridate::now` = function() tm,
-            `create_con` = function(x) con,
+            `dbezr:::create_con` = function(x) con,
 
             # nolint start
             # register the credentials
@@ -97,27 +97,12 @@ test_that("db can be created from a credentials object and then removed", {
 
 test_that("rm_db_id removes database from registered list", {
     .cred <- pgsql_cred()
+    db_cred <- db_cred(.cred)
 
-    tm <- lubridate::now()
-    con <- create_con(.cred)
-
-    tryCatch({
-        with_mock(
-            `lubridate::now` = function() tm,
-            `create_con` = function(x) con,
-            # register the credentials
-            {db_cred <- db_cred(.cred)}, # nolint
-
-            # Verify there's something to remove
-            expect_true(exists(cred_id(.cred), dbezr:::registered_dbs)),
-            expect_silent(rm_db_id(cred_id(db_cred))),
-            expect_true(length(ls(dbezr:::registered_dbs))  == 0),
-            expect_false(is_valid_con(con))
-        )
-    }
-    , finally = {
-        tryCatch({disconnect_con(con)}, error= function(e) pass()) # nolint
-    })
+    # Verify there's something to remove
+    expect_true(exists(cred_id(.cred), dbezr:::registered_dbs))
+    expect_silent(rm_db_id(cred_id(db_cred)))
+    expect_true(length(ls(dbezr:::registered_dbs))  == 0)
 })
 
 test_that("rm_db removes database from registered list", {
@@ -129,7 +114,7 @@ test_that("rm_db removes database from registered list", {
     tryCatch({
         with_mock(
             `lubridate::now` = function() tm,
-            `create_con` = function(x) con,
+            `dbezr:::create_con` = function(x) con,
 
             # nolint start
             # register the credentials
