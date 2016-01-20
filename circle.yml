@@ -12,8 +12,8 @@ machine:
     - chmod 755 ./travis-tool.sh
     - ./travis-tool.sh bootstrap
 
-checkout:
-  post:
+dependencies:
+  override:
     - ./travis-tool.sh install_deps
 
 test:
