@@ -35,7 +35,7 @@ cred <- function(user, password, host, dbname, port = NA, engine = NA,
     .show_warn <- ifelse(is.na(.show_warn), FALSE, .show_warn)
     assert_is_a_bool(.show_warn)
 
-    engine <- ifelse(is.na(engine), "MySQL", engine)
+    engine <- ifelse(!(engine %in% c("MySQL", "PostgreSQL")), "MySQL", engine)
     if (engine == "MySQL") {
         port <- ifelse(is.na(port), 3306, as.numeric(port))
         assert_is_numeric(port)
@@ -137,4 +137,21 @@ cred_file <- function(file){
     # jsonlite package will handle being handed a file,
     # so there's nothing else to do
     cred_json(file)
+}
+
+#' Retrive database credentials from a system environment variable
+#'
+#' Retrieve database credentials from a system environment variable.
+#' Uses cred_json to parse.
+#'
+#' @param var_name system variable name
+#'
+#' @rdname cred
+#' @export
+cred_env <- function(var_name){
+    j <- Sys.getenv(var_name)
+    if(j == ""){
+        stop(paste0(var_name, " is not set"))
+    }
+    cred_json(j)
 }

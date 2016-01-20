@@ -11,6 +11,8 @@ Depends:
 Imports:
     assertive.types,
     DBI,
+    magrittr,
+    lubridate,
     RMySQL,
     RPostgreSQL,
     jsonlite,
