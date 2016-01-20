@@ -8,7 +8,7 @@ clst <- list(
     dbname = "foo",
     engine = "MySQL")
 
-path <- "test_file.json"
+path <- "tmpfile.json"
 
 test_that("cred_file throws error if file doesn't exist", {
     expect_error(cred_file(path))
@@ -19,7 +19,7 @@ test_that("cred_file reads from a file",{
 
     expect_equal(cred_file(path),
         structure(
-            data.frame(
+            list(
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),

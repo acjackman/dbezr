@@ -46,9 +46,8 @@ cred <- function(user, password, host, dbname, port = NA, engine = NA,
         stop("Invalid database engine specified")
     }
 
-    structure(data.frame(user = user, password = password, host = host,
-            port = port, dbname = dbname, engine = engine,
-            stringsAsFactors=FALSE),
+    structure(list(user = user, password = password, host = host,
+            port = port, dbname = dbname, engine = engine),
              class="db_credentials", show_warn = .show_warn, force_log = .qlog)
 }
 
