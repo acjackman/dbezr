@@ -14,10 +14,10 @@ machine:
 
 dependencies:
   override:
-    - ./travis-tool.sh install_deps
+    - ~/travis-tool.sh install_deps
 
 test:
   override:
-    - ./travis-tool.sh run_tests
+    - ~/travis-tool.sh run_tests
   post:
-    - ./travis-tool.sh dump_logs
+    - ~/travis-tool.sh dump_logs
