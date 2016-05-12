@@ -13,6 +13,10 @@ assign("db", NULL, envir = dbezr_set)
         # interactively
         dbezr.force_log = interactive(),
 
+        # Show database query warnings, typecasts often throw warnings, so this
+        # is disabled by default
+        dbezr.show_warn = FALSE,
+
         # Specify lubridate compatible time_zone for converting dates
         # from database
         dbezr.timezone = "UTC"

@@ -1,4 +1,4 @@
-context("get_db")
+context("get query - gq")
 
 mysql_cred <- function(){
     json_string <- Sys.getenv("DBEZR_TEST_MYSQL")
@@ -46,32 +46,8 @@ pgsql_cred <- function(){
     .cred
 }
 
-test_that("get_db throws error if no db is registered", {
-    rm_db_all()
-    dbezr_set$db <- NULL
-    expect_error(get_db(), "No database registered")
-})
+test_that("gq returns query results", {
+    db <- db_cred(mysql_cred())
 
-test_that("default db is set to retrieve", {
-    reg_psql <- db_cred(pgsql_cred())
-    reg_mysq <- db_cred(mysql_cred())
-
-    expect_equal(dbezr_set$db, cred_id(reg_psql))
-    rm_db_all()
-})
-
-test_that("get_db retrieves the default", {
-    reg_psql <- db_cred(pgsql_cred())
-    reg_mysq <- db_cred(mysql_cred())
-
-    expect_equal(cred_id(get_db()), cred_id(reg_psql))
-    rm_db_all()
-})
-
-test_that("get_db retrieves the passed through db", {
-    reg_psql <- db_cred(pgsql_cred())
-    reg_mysq <- db_cred(mysql_cred())
-
-    expect_equal(cred_id(get_db(reg_mysq)), cred_id(reg_mysq))
-    rm_db_all()
+    expect_equal(nrow(gq("SHOW TABLES", .db = qlog_silent(db))), 0)
 })

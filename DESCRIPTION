@@ -1,6 +1,6 @@
 Package: dbezr
 Title: Convenience wrapper for accessing SQL databases
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person("Adam", "Jackman", email = "adam@acjackman.com", role = c("aut", "cre"))
 Description: Provides convenience functions for constant work with databases.
     Manages connections, allows for a default database, and in general tries to make
@@ -16,6 +16,7 @@ Imports:
     RMySQL,
     RPostgreSQL,
     jsonlite,
+    stringr,
     plyr
 Suggests:
     testthat,
