@@ -33,7 +33,7 @@ db_cred <- function(cred){
     }
 
     # set as the default if not already done
-    if (is.na(dbezr_set$db)){
+    if (is.null(dbezr_set$db)){
         dbezr_set$db <- cid
     }
 
@@ -122,4 +122,30 @@ list_dbs <- function(){
 #' @export
 print.db_credentials_list <- function(x, ...){
     plyr::l_ply(x, .fun = print)
+}
+
+
+#' Retrieve the database
+#'
+#' Retrieve the database from the stored list, ensuring that there is a connection.
+#' @param db credentials object for the database to be used, use the default
+#'             database if null
+get_db <- function(db = NULL){
+    if (is.null(db)){
+        if (is.null(dbezr_set$db)) stop("No database registered")
+
+        # We can pull the default db
+        reg_db <- registered_dbs[[dbezr_set$db]]
+        db <- reg_db$cred
+    } else {
+        reg_db <- registered_dbs[[cred_id(db)]]
+    }
+
+    # Create connection if it doesn't exist, either because it hasn't been
+    # registered or the connection is invalid
+    if (is.null(reg_db) || !is_valid_con(reg_db$connection) ) {
+        db <- db_cred(db)
+    }
+
+    db
 }
