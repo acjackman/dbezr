@@ -22,6 +22,7 @@ mysql_cred <- function(){
     }
     .cred
 }
+
 pgsql_cred <- function(){
     json_string <- Sys.getenv("DBEZR_TEST_POSTGRES")
     if (json_string != ""){
@@ -44,6 +45,7 @@ pgsql_cred <- function(){
     }
     .cred
 }
+
 
 test_that("registration environment exists", {
     expect_true(exists("registered_dbs",  asNamespace("dbezr")))
