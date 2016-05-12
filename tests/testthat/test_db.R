@@ -84,7 +84,7 @@ test_that("db can be created from a credentials object and then removed", {
                         connection = create_con(cred),
                         created = lubridate::now(),
                         trans_active = FALSE
-                    ), class="dbchk_results")
+                    ), class = "dbchk_results")
             ),
             { rm_db(db_cred) }, # nolint
             expect_true(length(ls(dbezr:::registered_dbs)) == 0)

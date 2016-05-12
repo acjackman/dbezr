@@ -33,7 +33,7 @@ db_cred <- function(cred){
     }
 
     # set as the default if not already done
-    if(is.na(dbezr_set$db)){
+    if (is.na(dbezr_set$db)){
         dbezr_set$db <- cid
     }
 
@@ -78,7 +78,7 @@ rm_db <- function(cred){
 #' @export
 rm_db_id <- function(id){
     disconnect_con(registered_dbs[[id]]$connection)
-    rm(list=id, envir=registered_dbs)
+    rm(list = id, envir = registered_dbs)
 }
 
 #' @rdname rm_db
@@ -100,12 +100,12 @@ rm_db_all <- function(){
 #' @export
 list_dbs <- function(){
     rdbs <- ls(registered_dbs)
-    if(length(rdbs) > 0) {
+    if (length(rdbs) > 0) {
             rdbs %>%
             plyr::llply(.fun = function(x){
                 registered_dbs[[x]]$cred
             }) %>%
-            structure(class="db_credentials_list")
+            structure(class = "db_credentials_list")
     }
 }
 
@@ -121,5 +121,5 @@ list_dbs <- function(){
 #'
 #' @export
 print.db_credentials_list <- function(x, ...){
-    plyr::l_ply(x, .fun=print)
+    plyr::l_ply(x, .fun = print)
 }

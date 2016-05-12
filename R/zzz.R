@@ -1,9 +1,9 @@
-registered_dbs <- new.env(hash=TRUE)
-dbezr_set <- new.env(hash=TRUE)
-assign("db", NA, envir=dbezr_set)
+registered_dbs <- new.env(hash = TRUE)
+dbezr_set <- new.env(hash = TRUE)
+assign("db", NA, envir = dbezr_set)
 
 .onLoad <- function(libname, pkgname) {
-    reg.finalizer(registered_dbs, f=function(x) rm_db_all(), onexit = TRUE)
+    reg.finalizer(registered_dbs, f = function(x) rm_db_all(), onexit = TRUE)
 
     op <- options()
 
@@ -19,7 +19,9 @@ assign("db", NA, envir=dbezr_set)
     )
 
     toset <- !(names(op.dbezr) %in% names(op))
-    if(any(toset)) options(op.dbezr[toset])
+    if (any(toset)) {
+        options(op.dbezr[toset])
+    }
 
     invisible()
 }

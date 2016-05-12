@@ -48,7 +48,7 @@ cred <- function(user, password, host, dbname, port = NA, engine = NA,
 
     structure(list(user = user, password = password, host = host,
             port = port, dbname = dbname, engine = engine),
-             class="db_credentials", show_warn = .show_warn, force_log = .qlog)
+            class = "db_credentials", show_warn = .show_warn, force_log = .qlog)
 }
 
 # Create a unique identifier string for a db_credentials object
@@ -67,10 +67,10 @@ cred_id <- function(cred){
 #' @export
 print.db_credentials <- function(x, show_password=FALSE, ...){
     res <- paste0("db_cred: ", cred_id(x))
-    if(show_password){
+    if (show_password) {
         res <- paste0(res, " using \"", x$password, "\"")
     }
-    cat(res,"\n")
+    cat(res, "\n")
     invisible(x)
 }
 
@@ -88,12 +88,12 @@ print.db_credentials <- function(x, show_password=FALSE, ...){
 #' @rdname cred
 #' @export
 cred_json <- function(json){
-    j <- tryCatch(jsonlite::fromJSON(json), error=function(e){
+    j <- tryCatch(jsonlite::fromJSON(json), error = function(e){
         stop("Problem parsing JSON please check it for syntax.",
              call. = FALSE)
     })
 
-    required_fields <- c("user","password","dbname", "host")
+    required_fields <- c("user", "password", "dbname", "host")
 
     if (!all(required_fields %in% names(j))){
         stop("String is missing a required parameter.",
@@ -105,8 +105,8 @@ cred_json <- function(json){
 
     optional_fields <- c("port", "engine", ".qlog", ".show_warn")
 
-    plyr::l_ply(optional_fields, .fun= function(x) {
-        if(is.null(j[[x]])) j[[x]] <<- NA
+    plyr::l_ply(optional_fields, .fun = function(x) {
+        if (is.null(j[[x]])) j[[x]] <<- NA
     })
 
     cred(
@@ -130,7 +130,7 @@ cred_json <- function(json){
 #' @rdname cred
 #' @export
 cred_file <- function(file){
-    if(!file.exists(file)){
+    if (!file.exists(file)) {
         stop("Credentials file does not exist.")
     }
 
@@ -150,7 +150,7 @@ cred_file <- function(file){
 #' @export
 cred_env <- function(var_name){
     j <- Sys.getenv(var_name)
-    if(j == ""){
+    if (j == "") {
         stop(paste0(var_name, " is not set"))
     }
     cred_json(j)

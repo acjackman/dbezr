@@ -8,7 +8,7 @@ clst <- list(
     dbname = "foo",
     engine = "MySQL")
 
-test_that("cred creates a credentials object",{
+test_that("cred creates a credentials object", {
 
     expect_equal(cred(clst$user, clst$password, clst$host, clst$dbname,
                       clst$port, clst$engine),
@@ -17,12 +17,12 @@ test_that("cred creates a credentials object",{
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = NA)
+            class = "db_credentials", show_warn = FALSE, force_log = NA)
     )
 })
 
 
-test_that("cred creates a credentials object with a character port",{
+test_that("cred creates a credentials object with a character port", {
     char_port <- "8000"
     num_port <- 8000
 
@@ -33,7 +33,7 @@ test_that("cred creates a credentials object with a character port",{
                 user = clst$user, password = clst$password, host = clst$host,
                 port = num_port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = NA)
+            class = "db_credentials", show_warn = FALSE, force_log = NA)
     )
 })
 
@@ -46,7 +46,7 @@ test_that("cred defaults engine to MySQL", {
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = NA)
+            class = "db_credentials", show_warn = FALSE, force_log = NA)
     )
 })
 
@@ -59,7 +59,7 @@ test_that("cred defaults port to 3306 if not specified on MySQL Engine", {
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = NA)
+            class = "db_credentials", show_warn = FALSE, force_log = NA)
     )
 })
 
@@ -72,7 +72,7 @@ test_that("cred allows setting show_warn", {
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = TRUE, force_log = NA)
+            class = "db_credentials", show_warn = TRUE, force_log = NA)
     )
 })
 
@@ -85,7 +85,7 @@ test_that("cred allows setting .qlog to loud", {
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = TRUE)
+            class = "db_credentials", show_warn = FALSE, force_log = TRUE)
     )
 })
 
@@ -98,6 +98,6 @@ test_that("cred allows setting .qlog to silent", {
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = FALSE)
+            class = "db_credentials", show_warn = FALSE, force_log = FALSE)
     )
 })

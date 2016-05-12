@@ -14,8 +14,8 @@ test_that("cred_file throws error if file doesn't exist", {
     expect_error(cred_file(path))
 })
 
-test_that("cred_file reads from a file",{
-    writeLines(jsonlite::toJSON(clst, pretty=TRUE), path)
+test_that("cred_file reads from a file", {
+    writeLines(jsonlite::toJSON(clst, pretty = TRUE), path)
 
     expect_equal(cred_file(path),
         structure(
@@ -23,7 +23,7 @@ test_that("cred_file reads from a file",{
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = NA)
+            class = "db_credentials", show_warn = FALSE, force_log = NA)
     )
 
     file.remove(path)

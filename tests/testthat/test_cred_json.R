@@ -16,7 +16,7 @@ test_that("cred_json parses string", {
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = NA)
+            class = "db_credentials", show_warn = FALSE, force_log = NA)
     )
 })
 
@@ -28,7 +28,7 @@ test_that("cred_json allows setting .qlog", {
 
     jtrue <- paste0('{"user": "bob", "password": "passwd",',
         '"host": "127.0.0.1", "port": 3306, "dbname": "foo",',
-        '"engine":"MySQL",".qlog": true}', collapse="")
+        '"engine":"MySQL",".qlog": true}', collapse = "")
 
     expect_equal(cred_json(jtrue),
         structure(
@@ -36,14 +36,14 @@ test_that("cred_json allows setting .qlog", {
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = TRUE)
+            class = "db_credentials", show_warn = FALSE, force_log = TRUE)
     )
 })
 
 test_that("cred_json allows setting .show_warn", {
     jtrue <- paste0('{"user": "bob", "password": "passwd",',
         '"host": "127.0.0.1", "port": 3306, "dbname": "foo",',
-        '"engine":"MySQL",".show_warn": true}', collapse="")
+        '"engine":"MySQL",".show_warn": true}', collapse = "")
 
     expect_equal(cred_json(jtrue),
         structure(
@@ -51,14 +51,14 @@ test_that("cred_json allows setting .show_warn", {
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = TRUE, force_log = NA)
+            class = "db_credentials", show_warn = TRUE, force_log = NA)
     )
 })
 
 test_that("cred_json accepts port with character type ", {
     jtrue <- paste0('{"user": "bob", "password": "passwd",',
         '"host": "127.0.0.1", "port": "3306", "dbname": "foo",',
-        '"engine":"MySQL"}', collapse="")
+        '"engine":"MySQL"}', collapse = "")
 
     expect_equal(cred_json(jtrue),
         structure(
@@ -66,6 +66,6 @@ test_that("cred_json accepts port with character type ", {
                 user = clst$user, password = clst$password, host = clst$host,
                 port = clst$port, dbname = clst$dbname,
                 engine = clst$engine),
-            class="db_credentials", show_warn = FALSE, force_log = NA)
+            class = "db_credentials", show_warn = FALSE, force_log = NA)
     )
 })
