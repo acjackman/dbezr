@@ -14,7 +14,7 @@
 #' @param .show_warn show warnings from running query, usually typecasting.
 #'        See \code{\link{dbwarn}}
 #'
-#' @return a \code{db_credentials} obeject
+#' @return a \code{db_credentials} object
 #'
 #' @examples
 #' cred("bob","passwd","127.0.0.1","foo")

@@ -5,7 +5,7 @@
 \alias{cred_env}
 \alias{cred_file}
 \alias{cred_json}
-\title{Create databse credentials object}
+\title{Create database credentials object}
 \usage{
 cred(user, password, host, dbname, port = NA, engine = NA, .qlog = NA,
   .show_warn = NA)
@@ -36,16 +36,16 @@ See \code{\link{dbwarn}}}
 
 \item{json}{JSON credentials string.}
 
-\item{file}{filepath to JSON credentials file}
+\item{file}{file path to JSON credentials file}
 
 \item{var_name}{system variable name}
 }
 \value{
-a \code{db_credentials} obeject
+a \code{db_credentials} object
 }
 \description{
-Combine all the required elements to create a databse connection into
-a single object. Options can be set interatively via \code{\link{qlog_loud}},
+Combine all the required elements to create a database connection into
+a single object. Options can be set interactively via \code{\link{qlog_loud}},
 \code{\link{qlog_silent}}, and  \code{\link{dbwarn}}.
 
 Retrieve database credentials from a structured JSON and create a

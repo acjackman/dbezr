@@ -17,7 +17,7 @@ db_file(file)
 
 \item{json}{a JSON credentials string.}
 
-\item{file}{a file containg a JSON credentials string.}
+\item{file}{a file containing a JSON credentials string.}
 }
 \description{
 Register database to create a connection and use the database with \code{\link{gq}}.
