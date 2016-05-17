@@ -130,9 +130,14 @@ print.db_credentials_list <- function(x, ...){
 #' Retrieve the database from the stored list, ensuring that there is a connection.
 #' @param db credentials object for the database to be used, use the default
 #'             database if null
-get_db <- function(db = NULL){
+#' @param .error throw an error if no database is found
+get_db <- function(db = NULL, .error = TRUE){
     if (is.null(db)){
-        if (is.null(dbezr_set$db)) stop("No database registered")
+        if (is.null(dbezr_set$db) && .error) {
+            stop("No database registered")
+        } else if (is.null(dbezr_set$db) && !.error) {
+            return(NULL)
+        }
 
         # We can pull the default db
         reg_db <- registered_dbs[[dbezr_set$db]]

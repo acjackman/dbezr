@@ -4,11 +4,13 @@
 \alias{get_db}
 \title{Retrieve the database}
 \usage{
-get_db(db = NULL)
+get_db(db = NULL, .error = TRUE)
 }
 \arguments{
 \item{db}{credentials object for the database to be used, use the default
 database if null}
+
+\item{.error}{throw an error if no database is found}
 }
 \description{
 Retrieve the database from the stored list, ensuring that there is a connection.

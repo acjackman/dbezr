@@ -1,12 +1,13 @@
 #' Begin/commit/rollback SQL transactions
 #'
-#' Transactions require an open connection, so you will need to manually create the connection,
+#' db_trans require an open connection, so you will need to manually create the connection,
 #' preform queries with \code{\link{gq}} and then and close the
 #' connection.
 
+#' @param force force the action to take place
 #' @param .db the connection to use throughout the transaction
 
-#' @rdname transactions
+#' @rdname db_trans
 #' @export
 trans_begin <- function(.db = NULL){
     .db <- get_db(.db)
@@ -23,9 +24,9 @@ trans_begin <- function(.db = NULL){
     registered_dbs[[cred_id(.db)]]$trans_active <- TRUE
 }
 #' Commiting an SQL transaction saves the actions made durreing the transaction to the database.
-#' @rdname transactions
+#' @rdname db_trans
 #' @export
-trans_commit <- function(.db = NULL){
+trans_commit <- function(force = FALSE, .db = NULL){
     .db <- get_db(.db)
 
     if (active_transaction(.db)){
@@ -42,8 +43,8 @@ trans_commit <- function(.db = NULL){
     }
 }
 
-#' Rollback resets any transactions that might have happened durring the transaction.
-#' @rdname transactions
+#' Rollback resets any db_trans that might have happened durring the transaction.
+#' @rdname db_trans
 #' @export
 trans_rollback <- function(force = FALSE, .db = NULL){
     .db <- get_db(.db)
@@ -63,7 +64,7 @@ trans_rollback <- function(force = FALSE, .db = NULL){
 }
 
 #' Determine if there is an active transaction
-#' @rdname transactions
+#' @rdname db_trans
 #' export
 trans_active <- function(force = FALSE, .db = NULL){
     .db <- get_db(.db)
