@@ -51,3 +51,16 @@ test_that("gq returns query results", {
 
     expect_equal(nrow(gq("SHOW TABLES", .db = qlog_silent(db))), 0)
 })
+
+test_that("warnings silence options", {
+    skip("add tests")
+})
+
+test_that("multiple databases", {
+    skip("add tests")
+})
+
+
+test_that("output options", {
+    skip("add tests")
+})
