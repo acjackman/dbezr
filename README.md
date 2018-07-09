@@ -1,4 +1,4 @@
-# Easy Database Access with  `dbezr`
+# [ARCHIVED] Easy Database Access with  `dbezr`
 
 [![Circle CI](https://circleci.com/gh/acjackman/dbezr/tree/master.svg?style=svg)](https://circleci.com/gh/acjackman/dbezr/tree/master)
 
